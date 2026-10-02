@@ -11,4 +11,7 @@ I'm looking for entry-level opportunities in banking, including commercial banki
 
 Feel free to reach out at yilinli@hawaii.edu.
 
+## Engagements
+Course engagements will be listed here as I complete them.
+
 Drafted with help from Claude (Anthropic, 2026); reviewed and edited by me.
