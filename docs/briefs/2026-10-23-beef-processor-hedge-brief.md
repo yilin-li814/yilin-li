@@ -29,7 +29,7 @@ We are owed EUR 3.9 million by an Italian supermarket chain, with payment due in
 
 ## Background & Objectives
 
-An Italian supermarket chain owes us EUR 3,900,000, which we will receive in 91 days. The dollar amount we will receive is uncertain because exchange rates can always change. 
+An Italian supermarket chain owes us EUR 3,900,000, which we will receive in 91 days. The euro amount is fixed, but the dollar amount we will receive is not.
 
 At today’s forward rate of 1.1653, the receivable is worth about $4,544,670. However, if the euro falls by 5% before payment, we would receive about $227,000 less. Since a 5% exchange rate change over three months is realistic, this is a risk we need to control.
 
