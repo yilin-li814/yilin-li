@@ -5,8 +5,8 @@
 | **Created by** | Yilin Li |
 | **Updated by** | Yilin Li |
 | **Date Created** | 2026-11-05 |
-| **Date Updated** | 2026-11-05 |
-| **Version** | 0.2 |
+| **Date Updated** | 2026-11-13 |
+| **Version** | 0.4 |
 | **LLM Used** | Claude (Anthropic): helped draft sections and reviewed the draft for gaps |
 | **Role** | Treasury Analyst |
 | **Audience** | CFO / Director of Treasury |
@@ -37,18 +37,19 @@ All inputs are workbook named ranges. Values marked *indicative* are placeholder
 
 ## 3. Tab Architecture
 
-The workbook has eight tabs. Tab names contain no spaces.
+The workbook has nine tabs. Tab names contain no spaces.
 
 | Tab | Purpose |
 |---|---|
-| `Cover` | Displays the title, scenario, author, date, and a short summary of results using the gray output cells from §8. |
-| `Legend` | Explains the cell color key: yellow for inputs, gray for outputs, and black for formulas. |
-| `Inputs` | Contains all ten named ranges from §2 and serves as the only place where users should change values. |
-| `Forward` | Calculates the forward hedge and its resulting dollar proceeds. |
-| `MoneyMarket` | Shows the three money-market hedge steps in separate cells, along with the parity check. |
-| `Option` | Calculates the put option payoff and includes the call payoff for reference. |
-| `Sensitivity` | Presents the 11-row sensitivity grid from −5% to +5% and a comparison chart of all four strategies. |
-| `Notes` | Lists data sources with their dates and documents the assumptions from §4. |
+| `Cover` | Title, scenario, author, and date; a summary of key outputs linked by formula; and a data-provenance block listing each market input with its source and date, marked "indicative, replaced with live data at Stage 4." |
+| `Legend` | The color key, applied on every tab: **Yellow** = inputs (the ten named ranges), **Blue** = assumptions (fixed modeling conventions: `DAY_BASIS` = 360, `GRID_STEP` = 1%, `PARITY_TOL` = 0.05%), **Green** = formulas (intermediate calculations), **Gray** = outputs (the named results in §8). |
+| `Inputs` | All ten named ranges from §2 (yellow) and the three assumption cells (blue). The only place a user changes values. |
+| `Forward` | Forward hedge proceeds. |
+| `MoneyMarket` | The three money-market steps in separate cells, plus the parity check. |
+| `Option` | Put and call premium cost in USD, and an 11-row table of put proceeds and call cost as functions of `S_T`, using the §6 grid. |
+| `Sensitivity` | The 11-row grid from −5% to +5% and the four-line comparison chart. |
+| `Checks` | Every §7 rule computed as PASS or FAIL, showing actual vs. expected values. A failing check is shown as FAIL, never forced to pass. |
+| `Notes` | Data sources with dates, and the assumptions from §4. |
 
 ## 4. Assumptions & Constraints
 
@@ -65,7 +66,7 @@ The workbook has eight tabs. Tab names contain no spaces.
 
 ## 5. Calculation Flow
 
-Rates are entered as decimals in formulas (3.875% = 0.03875). `S_T` is the settlement spot rate from the §6 grid. Every step below is its own cell, referenced by name. No formula uses cell addresses.
+Rates are entered as decimals in formulas (3.875% = 0.03875). `S_T` is the settlement spot rate from the §6 grid. Every step below is its own cell, referenced by name. No formula references an input or output by cell address. Where a formula shows 360, the workbook references the blue assumption cell `DAY_BASIS`.
 
 **Step 1: No hedge.** The firm sells the euros at whatever spot rate prevails at settlement.
 `USD_NO_HEDGE(S_T) = FC_AMT × S_T`
@@ -122,11 +123,11 @@ The call (`USD_CALL_COST`) is not part of the grid or chart, since it does not h
 
 ## 7. Validation Rules (Check Figures)
 
-The finished workbook must pass every rule below. These rules are the Stage 3 audit checklist. Dollar check figures must match within $1 (rounding); rates within 0.0001.
+The finished workbook must pass every rule below. These rules are the Stage 3 audit checklist. Dollar check figures must match within $1 (rounding); rates within 0.0001. Each rule is computed on the `Checks` tab.
 
 **Structural rules**
 
-1. All ten named ranges from §2 exist, and every formula refers to them by name. No formula uses a cell address.
+1. All ten named ranges from §2 exist, and every formula refers to inputs and outputs by name. Inside the 11-row grids, a formula may reference cells in its own row (for example, `S_T` uses that row's shift); no formula references an input or output by cell address.
 2. Every gray output cell is a formula. No output is a typed-in number.
 3. No error values anywhere (`#DIV/0!`, `#N/A`, `#REF!`, `#VALUE!`, `#NAME?`).
 4. Changing any input on the `Inputs` tab updates every output and the chart.
@@ -180,6 +181,7 @@ All outputs are gray cells, computed by formula, with exactly these names.
 | `F_IMPLIED` | Step 4 of §5 | `MoneyMarket` | 1.1263 |
 | `PARITY_GAP` | `USD_FWD − USD_MM` | `MoneyMarket` | $152,191 |
 | `PUT_COST` | `FC_AMT × PREM_PUT` | `Option` | $57,330 |
+| `CALL_COST` | `FC_AMT × PREM_CALL` | `Option` | $77,610 |
 | `USD_PUT_FLOOR` | `FC_AMT × (K_PUT − PREM_PUT)` | `Option` | $4,320,030 |
 | `USD_BASE_NO_HEDGE` | `USD_NO_HEDGE` at `S_T = S0_in` | `Sensitivity` | $4,377,360 |
 | Sensitivity table | The 11-row grid from §6 | `Sensitivity` | §7 check figures |
@@ -195,3 +197,5 @@ The `Cover` tab repeats `USD_FWD`, `USD_MM`, `PARITY_GAP`, `USD_PUT_FLOOR`, and 
 |---------|------|--------|--------|
 | 0.1 | 2026-11-05 | Yilin Li | Initial draft |
 | 0.2 | 2026-11-05 | Yilin Li | Fixed gaps found in AI review: §7 rule 9 (Forward ≠ Money market under parity gap), §6 put description below strike, §6 "Best overall" wording, §7 rule 5 wording, completed all 11 check-figure rows |
+| 0.3 | 2026-11-13 | Yilin Li | Aligned spec with Stage 3 build contract: Cover provenance block, four-color legend with blue assumption cells, call premium and payoff table, Checks tab |
+| 0.4 | 2026-11-13 | Yilin Li | Stage 3 audit Finding 5: rewrote §7 rule 1 to allow same-row references inside the 11-row grids |
