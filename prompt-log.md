@@ -26,3 +26,11 @@
 **Before the build:** compared the spec with the Stage 3 build contract and found four gaps (Cover provenance block, four-color legend, call premium and payoff table, Checks tab); fixed them in the spec (v0.3) before generating.
 
 **Audit:** 6 findings in analysis/2026-11-13-beef-processor-build-audit-analysis.md. Parity check fails by $152,191 and is reported, not forced. Found a spec defect (§7 rule 1 too strict for grid rows) and fixed the spec (v0.4).
+
+## 2026-11-19: FX hedging Stage 4, market data + population
+
+**Prompt:** Asked Claude to retrieve live market data as of 19 Nov 2026, populate model.xlsx through the named input cells only, and write the market-data memo.
+
+**What the AI did:** pulled spot (ECB reference rate 1.0992), the 3-month T-bill yield (4.26%) and the 3-month Euribor fixing (2.825%); computed the CIP-implied forward (1.1032) and the gap to the bank quote ($242,350); confirmed zero formulas changed versus the Stage 3 workbook; replaced the hard-coded check figures (Stage 3 audit Finding 6).
+
+**My decisions:** switched from overnight policy rates to 3-month rates to match the 91-day horizon; kept the bank's 1.1653 forward and the scenario premiums, as Stage 4 requires; left the parity check as FAIL; cross-checked the outputs in the FX Hedging Lab myself.
