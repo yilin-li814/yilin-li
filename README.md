@@ -23,7 +23,7 @@ A U.S. beef processor is owed EUR 3,900,000 by an Italian supermarket chain, pay
 | 2 · Model specification | [capabilities/fx-hedging/spec.md](capabilities/fx-hedging/spec.md) |
 | 3 · Workbook + build audit | [capabilities/fx-hedging/model.xlsx](capabilities/fx-hedging/model.xlsx) · [analysis/2026-11-13-beef-processor-build-audit-analysis.md](analysis/2026-11-13-beef-processor-build-audit-analysis.md) |
 | 4 · Market-data memo | [data/2026-11-19-beef-processor-market-data-memo.md](data/2026-11-19-beef-processor-market-data-memo.md) |
-| 5 · Validation + decision memo | in progress |
+| 5 · Validation + decision memo | [analysis/2026-11-26-beef-processor-validation-analysis.md](analysis/2026-11-26-beef-processor-validation-analysis.md) · [docs/decisions/2026-11-26-beef-processor-hedge-decision-memo.md](docs/decisions/2026-11-26-beef-processor-hedge-decision-memo.md) |
 
 AI use in this project is logged in [prompt-log.md](prompt-log.md).
 
