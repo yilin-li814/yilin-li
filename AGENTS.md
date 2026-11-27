@@ -64,4 +64,4 @@ tell me rather than committing it.
 
 ## Mistakes to avoid (append to this list)
 Record errors here as they happen, so the same one does not repeat.
-- (empty — add the first one when it happens)
+- 2026-11-26: Claude drafted the Stage 5 decision memo and validation in full, against the rule above that AI may not write memos or analyses. Caught when Claude read this file; both drafts were discarded and rebuilt from Yilin's dictated answers. Read this file before drafting anything.

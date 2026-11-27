@@ -34,3 +34,13 @@
 **What the AI did:** pulled spot (ECB reference rate 1.0992), the 3-month T-bill yield (4.26%) and the 3-month Euribor fixing (2.825%); computed the CIP-implied forward (1.1032) and the gap to the bank quote ($242,350); confirmed zero formulas changed versus the Stage 3 workbook; replaced the hard-coded check figures (Stage 3 audit Finding 6).
 
 **My decisions:** switched from overnight policy rates to 3-month rates to match the 91-day horizon; kept the bank's 1.1653 forward and the scenario premiums, as Stage 4 requires; left the parity check as FAIL; cross-checked the outputs in the FX Hedging Lab myself.
+
+## 2026-11-26: FX hedging Stage 5, independent run, validation, decision memo
+
+**Fresh-session prompt** (new Claude conversation, no history; only spec.md and data/2026-11-19-beef-processor-market-data-memo.md attached): "Using only the two attached documents (my model specification and my market-data memo), compute all hedge outcomes for this receivable: forward, money-market hedge (all three steps), put option, call option, and no hedge, at settlement spot rates of −5%, 0%, and +5% from the spot rate. Then recommend one strategy. Show your calculations. Do not ask me for more information; where the documents are unclear, state the assumption you made and continue." No follow-up or coaching. Raw output: Appendix A of the validation analysis.
+
+**What I asked in the working session:** help finishing Stage 5 while I could not use my arm.
+
+**What Claude produced:** the comparison and hand-verification tables; README and capability README updates. The decision memo and the retrospective are my dictated answers, which Claude organized into sections after critiquing my reasoning.
+
+**What was wrong and how it was caught:** Claude first wrote the whole memo and validation itself, which breaks the AGENTS.md rule that AI may not write my memos or analyses. Claude caught it when it read AGENTS.md before committing; I chose to discard those drafts and dictate my own answers. Recorded under "Mistakes to avoid" in AGENTS.md.
