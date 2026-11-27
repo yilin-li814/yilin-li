@@ -12,5 +12,7 @@ Scenario: beef-processor, a EUR 3,900,000 receivable due in 91 days.
 
 ## Where it was exercised
 - Stage 1: executive brief, `docs/briefs/2026-10-23-beef-processor-hedge-brief.md`
-- Stage 2: model specification, `spec.md` (v0.2, 2026-11-05)
-- Stages 3–5: to come; the decision memo will live in `docs/decisions/`
+- Stage 2: model specification, `spec.md` (v0.2, 2026-11-05; v0.4 after the Stage 3 audit)
+- Stage 3: workbook `model.xlsx` and build audit, `analysis/2026-11-13-beef-processor-build-audit-analysis.md`
+- Stage 4: live market data (19 Nov 2026), `data/2026-11-19-beef-processor-market-data-memo.md`
+- Stage 5: validation and decision memo, in progress
